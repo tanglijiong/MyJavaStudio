@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<xjj>
+	<goods>
+		<isin>SN100001IsIn</isin>
+		<quantity>1200</quantity>
+		<price>1200.312</price>
+		<customer>张三顾客!</customer>
+		<buyDay>2014-12-30 08:35:40.254 UTC</buyDay>
+	</goods>
+</xjj>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd  
+						http://www.springframework.org/schema/batch 
+						http://www.springframework.org/schema/batch/spring-batch.xsd
+						http://www.springframework.org/schema/util
+						http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<import resource="../application.xml"/>
+
+	<!-- 读取和写入xml文件 -->
+    <batch:job id="xmlFileReadAndWriterJob">
+        <batch:step id="xmlFileReadAndWriterStep">
+            <tasklet>
+            	<chunk reader="xmlReader" writer="xmlWriter" processor="xmlProcessor" commit-interval="10"></chunk>
+            </tasklet>
+        </batch:step>
+    </batch:job>
+
+	<!-- 读取xml文件 -->
+    <bean id="xmlReader" class="org.springframework.batch.item.xml.StaxEventItemReader" scope="step">
+		<property name="fragmentRootElementName" value="goods" /> <!-- 需要读取的某一块的根tag -->
+		<property name="unmarshaller" ref="tradeMarshaller" />
+		<property name="resource" value="file:#{jobParameters['inputFilePath']}"></property>
+    </bean>
+
+	<!-- 写xml文件 -->
+    <bean id="xmlWriter" class="org.springframework.batch.item.xml.StaxEventItemWriter" scope="step">
+		<property name="rootTagName" value="xjj"/> <!-- 写入的根tag -->
+		<property name="marshaller" ref="tradeMarshaller" />
+		<property name="resource" value="file:#{jobParameters['outputFilePath']}" />
+    </bean>
+
+	<bean id="tradeMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="aliases">
+			<util:map id="aliases">
+				<entry key="goods" value="com.xjj.springBatch.xml.Goods" />
+				<entry key="buyDay" value="java.util.Date"></entry>
+			</util:map>
+		</property>
+	</bean>
+</beans>

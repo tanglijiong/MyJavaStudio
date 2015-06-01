@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd  
+						http://www.springframework.org/schema/batch 
+						http://www.springframework.org/schema/batch/spring-batch.xsd">
+	
+	<import resource="../application.xml"/>
+
+	<!-- 读取和写入csv文件 -->
+    <batch:job id="csvJob">
+        <batch:step id="csvStep">
+            <tasklet transaction-manager="transactionManager">
+            	<chunk reader="csvItemReader" writer="csvItemWriter" processor="csvItemProcessor" commit-interval="1"></chunk>
+            </tasklet>
+        </batch:step>
+    </batch:job>
+
+	<!-- 读取csv文件 -->
+    <bean id="csvItemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+        <property name="resource" value="classpath:com/xjj/springBatch/csv/inputFile.csv"/>
+        <property name="lineMapper">
+            <bean
+                class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <property name="lineTokenizer" ref="lineTokenizer"/>
+                <property name="fieldSetMapper">
+                    <bean class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+                        <property name="prototypeBeanName" value="student"></property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="student" class="com.xjj.springBatch.csv.Student"></bean>
+
+    <!-- lineTokenizer -->
+    <bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+        <property name="delimiter" value=","/>
+        <property name="names">
+            <list>
+                <value>ID</value>
+                <value>name</value>
+                <value>age</value>
+                <value>score</value>
+            </list>
+        </property>
+    </bean>
+
+	<!-- 写CSV文件 -->
+    <bean id="csvItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+        <property name="resource" value="file:src/com/xjj/springBatch/csv/outputFile.csv"/>
+        <property name="lineAggregator">
+            <bean class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+                <property name="delimiter" value=","></property>
+                <property name="fieldExtractor">
+                    <bean class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+                        <property name="names" value="name,age,score"></property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+        <property name="appendAllowed" value="true"></property> <!-- 是否追加在原文件后面 -->
+        <!-- <property name="encoding" value="UTF-8"></property> -->
+    </bean>
+    
+</beans>
