@@ -7,10 +7,14 @@ And some customized utilities, encapsulated open-source code.
 
 另外还有一些小工具、以及对开源代码的二次封装。
 
-- FreeMarker example
-- FTP
+Java:
+- FreeMarker: A simple implementation of freeMarker
+- FTP: A simple FTP client with progress shown
 - HTTP
 - POI/Excel example
 - Spring Batch
 - Timers
 - Utilities: ClassPathUtils, DateUtils
+
+Web:
+- Trigger the web browser to be in Full Screen state.
