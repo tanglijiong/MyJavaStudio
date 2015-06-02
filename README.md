@@ -13,8 +13,11 @@ Java:
 - HTTP
 - POI/Excel example
 - Spring Batch
+- SpringMVC example
 - Timers
 - Utilities: ClassPathUtils, DateUtils
 
 Web:
-- Trigger the web browser to be in Full Screen state.
+- Example to trigger the web browser to be in Full Screen state.
+- SpringMVC receive Form Data or Query String using Map, MultiValueMap.
+- SpringMVC receive JSON data using Map.
