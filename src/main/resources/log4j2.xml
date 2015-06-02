@@ -9,13 +9,13 @@
 			<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
-
-		<!-- 输出到文件，fileName：目标路径和文件名；filePattern：压缩文件的路径和名称格式 -->		
+		
+		<!-- 输出到文件，fileName：目标路径和文件名；filePattern：文件分割命名规则，zip file folder and file name pattern -->	
 		<RollingFile name="RollingFile" fileName="logs/xjj.log"	filePattern="logs/$${date:yyyy-MM}/xjj-%d{yyyy-MM-dd}-%i.log.gz">
 			<PatternLayout>
 				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
 			</PatternLayout>
-			<Policies> <!-- 文件分割压缩的触发规则 -->
+			<Policies> <!-- 文件分割规则, file cut policy -->
 				<OnStartupTriggeringPolicy />
 				<TimeBasedTriggeringPolicy />
 				<SizeBasedTriggeringPolicy size="100 KB" />

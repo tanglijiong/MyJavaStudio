@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/db.properties=UTF-8
+encoding//src/main/resources/log4j2.xml=UTF-8
+encoding//src/main/resources/profile/development.properties=UTF-8
+encoding//src/main/resources/profile/production.properties=UTF-8
+encoding//src/main/resources/redis.properties=UTF-8

@@ -6,13 +6,18 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
+/**
+ * 使用@Value获取配置文件中的值
+ * @author XuJijun
+ *
+ */
 @Component
 public class MySQLConnectionInfo {
 	//@Value("#{configProperties['mysql.url']}")
 	@Value("${mysql.url}")
     private String url;
     //@Value("#{configProperties['mysql.userName']}")
-	@Value("${mysql.userName}")
+	@Value("${mysql.username}")
     private String userName;
    // @Value("#{configProperties['mysql.password']}")
 	@Value("${mysql.password}")

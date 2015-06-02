@@ -8,10 +8,13 @@ And some customized utilities, encapsulated open-source code.
 另外还有一些小工具、以及对开源代码的二次封装。
 
 Java:
+- Cache: A local cache example using spring cache support
 - FreeMarker: A simple implementation of freeMarker
 - FTP: A simple FTP client with progress shown
+- Guava Cache: example for using Guava cache framework
 - HTTP
 - POI/Excel example
+- Redis: A simple example using spring data redis
 - Spring Batch
 - SpringMVC example
 - Timers
