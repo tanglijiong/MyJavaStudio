@@ -8,7 +8,7 @@ And some customized utilities, encapsulated open-source code.
 另外还有一些小工具、以及对开源代码的二次封装。
 
 Java:
-- Cache: A local cache example using spring cache support
+- Cache: A local cache example using ConcurrentHashMap (package: com.xjj.cache.local)
 - FreeMarker: A simple implementation of freeMarker
 - FTP: A simple FTP client with progress shown
 - Guava Cache: example for using Guava cache framework
