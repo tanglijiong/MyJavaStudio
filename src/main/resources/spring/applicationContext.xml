@@ -15,7 +15,7 @@
 	
 	<context:component-scan base-package="com.xjj.service, com.xjj.spring"/>
 	
-	<context:property-placeholder location="classpath:db.properties,classpath:redis.properties" />
+	<context:property-placeholder location="classpath:db.properties, classpath:redis.properties" />
 	
 	<!-- <bean id="testService" class="com.xjj.service.impl.TestServiceImpl">
 		<property name="url" value="${db.url}"></property>

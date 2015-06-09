@@ -56,8 +56,12 @@ public class ClassPathUtils {
 		System.out.println("根路径：" + getClassPath());
 		System.out.println("类ClassPathUtils所在的路径：" + getClassPath(ClassPathUtils.class));
 		System.out.println("包com.xjj.ftp所在的路径：" + getClassPath("com/xjj/utils"));
+		System.out.println("包com.xjj.ftp所在的路径：" + getClassPath("com/xjj/utils"));
 		
-		InputStream in = getInputStream("com/xjj/utils/ClassPathUtils.class");
+		System.out.println("配置目录springmvc所在的路径：" + getClassPath("springmvc"));
+		
+		InputStream in = getInputStream("springmvc/servlet.xml");
+		//InputStream in = getInputStream("resources/css/common.css");
 		int buffSize = 1024;
 		byte[] b = new byte[buffSize];
 		in.read(b, 0, buffSize);
