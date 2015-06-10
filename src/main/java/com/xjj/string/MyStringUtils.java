@@ -12,5 +12,8 @@ public class MyStringUtils {
 		for(String s : split){
 			System.out.println(s);
 		}
+		//String str=String.format("Hi,%s:%s.%s", "王南","王力","王张"); 
+		String fs = String.format("目前只开通%s地区", "赤岗、"+"客村");
+		System.out.println(fs);
 	}
 }
