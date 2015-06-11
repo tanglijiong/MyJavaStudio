@@ -79,6 +79,13 @@
 			<version>2.7.2</version>
 		</dependency>
 				
+		<!-- For AOP -->		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.6</version>
+		</dependency>
+				
 		<!-- FTP -->
 		<dependency>
 			<groupId>commons-net</groupId>
