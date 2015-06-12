@@ -22,9 +22,9 @@
 	<mvc:resources location="/" mapping="/*.js"/>
 	<mvc:resources location="/data/" mapping="/data/**" />
 
-	<!-- 方法拦截器（拦截Controller包中的所有方法） MethodInterceptor -->
 	<bean id="controllerMethodInterceptor" class="com.xjj.web.interceptor.ControllerMethodInterceptor"/>
 	
+	<!-- 方法拦截器（拦截Controller包中的所有被RequestMapping注解的方法） MethodInterceptor -->
 	<aop:config proxy-target-class="true">
 		<aop:pointcut id="controllerMethodPointcut" expression="execution(* com.xjj.web.controller..*(..)) and
         	@annotation(org.springframework.web.bind.annotation.RequestMapping)"/>

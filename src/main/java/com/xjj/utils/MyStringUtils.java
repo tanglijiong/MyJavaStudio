@@ -13,7 +13,7 @@ public class MyStringUtils {
 			System.out.println(s);
 		}
 		//String str=String.format("Hi,%s:%s.%s", "王南","王力","王张"); 
-		String fs = String.format("目前只开通%s地区", "赤岗、"+"客村");
+		String fs = String.format("目前只开通%s地区", "赤岗、"+"客村等");
 		System.out.println(fs);
 	}
 }
