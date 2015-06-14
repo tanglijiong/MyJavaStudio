@@ -123,7 +123,7 @@
 			$("#tcTitle").empty();
 			$("#tcTitle").append("<option>选择测试用例 </option>");
 			$.each(testCases, function(index, tc) {
-				$("#tcTitle").append("<option url='" + tc.url + "' requestBody=" + tc.requestBody + "' contentType=" + tc.contentType + ">" + tc.title + "</option>");
+				$("#tcTitle").append("<option url='" + tc.url + "' requestBody='" + tc.requestBody + "' contentType=" + tc.contentType + ">" + tc.title + "</option>");
 			});
 		}
 		

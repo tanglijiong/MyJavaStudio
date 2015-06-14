@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/mapParameter/")
-public class MapParameter {
+public class MapParameterController {
 	
 	/**
 	 * 用Map接收前端提交的Form Data或Query String，如果有相同的参数名，只接收第一个

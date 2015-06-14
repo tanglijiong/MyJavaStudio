@@ -9,7 +9,7 @@ Java:
 - Cache: A local cache example using ConcurrentHashMap (package: com.xjj.cache.local)
 - FreeMarker: A simple implementation of freeMarker
 - FTP: A simple FTP client with progress shown
-- Guava Cache: example for using Guava cache framework
+- Guava Cache: an example for using Guava cache framework, including management web page
 - HTTP Client
 - Intercepter: MethodInterceptor
 - Math and Format: BigDecimal, NumberFormat

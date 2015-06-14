@@ -21,5 +21,7 @@
 		<property name="url" value="${db.url}"></property>
 	</bean> -->
 	
+	<!-- Spring管理工具 -->
+	<bean id="springContextUtil" class="com.xjj.utils.SpringContextUtil"></bean>
 
 </beans>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cache Admin</title>
+	
+    <meta charset="UTF-8">
+	
+    <script src="./resources/js/jquery-2.1.4.js" charset="UTF-8" type="text/javascript"></script>
+
+	<style>
+		.important {color : red;}
+		.attention {color : orange;}
+		.perfect {color : green;}
+		.highlight {color : blue;}
+		table{border: 1px solid #8968CD; border-collapse: collapse;}
+		th,td{border: 1px solid #8968CD; padding:6px;}
+		td{color: green;}
+	</style>
+
+  </head>
+  
+  <body>
+  
+  	<div>
+		<div id="operations">
+			Cache列表：&nbsp;
+			<input type="button" value="刷新" onClick="refreshStatsAll();">&nbsp;
+			<input type="checkbox" id="autoRefresh" onClick="toggleAutoRefreshStats();"><label for="autoRefresh">自动刷新（3s）</label>
+			
+		</div>
+		<div><pre id="response" class="attention"></pre></div>
+		<div><br><pre id="responseRawData" ></pre></div>
+	</div>
+  
+  </body>
+
+<script>
+	var autoRefreshInterval = 3000;
+	var autoRefershObject;
+	var requestStatsAll = {url : "/cache/admin/stats/all", params : "*", callback: requestStatsAllCallback};
+
+	$(function() {
+		refreshStatsAll();
+	});
+
+	function refreshStatsAll(){
+		ajaxRequest(requestStatsAll.url, requestStatsAll.params, requestStatsAll.callback);
+	}
+	
+	function sizeStatistics(obj){
+		var c = "当前数据量/上限：" + obj.size + "/" + obj.maximumSize;
+		 c += "\n历史最高数据量：" + obj.highestSize;
+		 c += "\n最高数据量时间：" + obj.highestTime;
+				
+		return c;
+	}
+	
+	function hitStatistics(obj){
+		var c = "命中数量：" + obj.hitCount;
+		c += "\n命中比例：" + obj.hitRate;
+		c += "\n读库比例：" + obj.missRate;
+				
+		return c;
+	}
+	
+	function loadStatistics(obj){
+		var c = "成功加载数：" + obj.loadSuccessCount;
+		c += "\n失败加载数：" + obj.loadExceptionCount;
+		c += "\n总加载毫秒：" + obj.totalLoadTime;
+		
+		return c;
+	}
+
+	function requestStatsAllCallback(jsonResult){
+		var html = "<table><tr><th>Cache名称</th> <th>数据量统计</th> <th>命中统计</th> <th>加载统计</th> <th>开始/重置时间</th> <th>操作</th> </tr>";
+		$.each(jsonResult.data, function(idx, obj){
+			html += "<tr><th>" + obj.cacheName + "</th>"
+				/* + "<td>" + obj.size + "/" + obj.maximumSize + "</td>" */
+				+ "<td>" + sizeStatistics(obj) + "</td>"
+				+ "<td>" + hitStatistics(obj) + "</td>"
+				+ "<td>" + loadStatistics(obj) + "</td>"
+				+ "<td>" + obj.resetTime +"\n\n失效时长：" + obj.survivalDuration + "（分钟）</td>"
+				+ "<td>"
+				+ "<a href='javascript:void(0)' onclick='resetCache(\""+obj.cacheName+"\");'>清空缓存</a>"
+				+ "\t<a href='javascript:void(0)' onclick='queryDataByPage(\""+obj.cacheName+"\");'>显示详情</a>"
+				+ "</td>"
+				+ "</tr>";
+		});
+		html += "</table>";
+		$("#response").html(html);
+		//$("#responseRawData").html(JSON.stringify(jsonResult, null, "\t"));
+	}
+
+	function resetCache(cacheName){
+		$.ajax({
+			type : "POST",
+			url : getRootPath()+"/cache/admin/reset",
+			dataType : "json", //表示返回值类型
+			data : {"cacheName":cacheName},
+			success : function(jsonResult){alert(jsonResult.message);refreshStatsAll();}
+		});
+	}
+	
+	//定时刷新开关
+	function toggleAutoRefreshStats(){
+		if($("#autoRefresh").prop("checked")==true){
+			autoRefershObject = setInterval(refreshStatsAll, autoRefreshInterval);
+		}else{
+			clearInterval(autoRefershObject);
+		}
+	}
+	
+	var pageParam = {pageNo : 1, pageSize : 10, cacheName : null};
+	
+	function resetpageParam(){
+		pageParam.pageNo = 1;
+		pageParam.totalPage = 0;
+	}
+	
+	function queryDataByPage(cacheName){
+		resetpageParam();
+		pageParam.cacheName = cacheName;
+		ajaxRequest("/cache/admin/queryDataByPage", pageParam, pageQueryCallback);
+	}
+	
+	function pageQueryCallback(jsonResult){
+		pageParam.totalPage = jsonResult.totalPage;
+		var html = "<label class='highlight'>Cache名称：" + pageParam.cacheName + "</label><br/><br/>";
+		html += "<a href='javascript:void(0)' onclick='firstPage();'>首页 </a>\t";
+		html += "<a href='javascript:void(0)' onclick='previousPage();'>上一页 </a>\t";
+		//html += "第" + jsonResult.pageNo + "页（共" + jsonResult.totalPage + "页）\t";
+		html += "第<input type='number' id='pageNo' min='1' max='" + jsonResult.totalPage + "' value='" + jsonResult.pageNo + "' size='" + lengthOfNum(jsonResult.totalPage) + "' />页（共" + jsonResult.totalPage + "页）\t";
+		html += "<a href='javascript:void(0)' onclick='nextPage();'>下一页 </a>\t";
+		html += "<a href='javascript:void(0)' onclick='lastPage();'>末页</a>\t";
+		html += "<br/><br/>";
+		html += JSON.stringify(jsonResult.results[0], null, "\t");
+		$("#responseRawData").html(html);
+		
+		$("#pageNo").blur(function(){
+			pn = $("#pageNo").val();
+			if(pn < 1){
+				pn = 1;
+				$("#pageNo").val(pn);
+			}else if(pn > pageParam.totalPage){
+				pn = pageParam.totalPage;
+				$("#pageNo").val(pn);
+			}
+			
+			pageParam.pageNo=pn;
+			ajaxRequest("/cache/admin/queryDataByPage", pageParam, pageQueryCallback);
+		});
+		
+		//回车
+		$("#pageNo").keyup(function(event){
+			if(event.which != 13){
+				return;
+			}
+			
+			pn = $("#pageNo").val();
+			if(pn < 1){
+				pn = 1;
+				$("#pageNo").val(pn);
+			}else if(pn > pageParam.totalPage){
+				pn = pageParam.totalPage;
+				$("#pageNo").val(pn);
+			}
+			
+			pageParam.pageNo=pn;
+			ajaxRequest("/cache/admin/queryDataByPage", pageParam, pageQueryCallback);
+		});
+	}
+	
+	function firstPage(){
+		pageParam.pageNo=1;
+		ajaxRequest("/cache/admin/queryDataByPage", pageParam, pageQueryCallback);
+	}
+	
+	function lastPage(){
+		pageParam.pageNo=pageParam.totalPage;
+		ajaxRequest("/cache/admin/queryDataByPage", pageParam, pageQueryCallback);
+	}
+	
+	function nextPage(){
+		if(pageParam.pageNo==pageParam.totalPage){
+			alert("已经是最后一页了！");
+			return;
+		}
+		pageParam.pageNo++;
+		ajaxRequest("/cache/admin/queryDataByPage", pageParam, pageQueryCallback);
+	}
+	
+	function previousPage(){
+		if(pageParam.pageNo==1){
+			alert("已经是第一页了！");
+			return;
+		}
+		pageParam.pageNo--;
+		ajaxRequest("/cache/admin/queryDataByPage", pageParam, pageQueryCallback);
+	}
+
+	//js获取项目根路径，如： http://localhost:8083/uimcardprj
+	function getRootPath() {
+		//获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+		var curWwwPath = window.document.location.href;
+		//获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+		var pathName = window.document.location.pathname;
+		var pos = curWwwPath.indexOf(pathName);
+		//获取主机地址，如： http://localhost:8083
+		var localhostPath = curWwwPath.substring(0, pos);
+		//获取带"/"的项目名，如：/uimcardprj
+		var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+		return (localhostPath + projectName);
+	}
+		
+	//发送ajax请求
+	function ajaxRequest(url, params, successCallback, contentType,	errorCallback, async) {
+		var _async = async || true;
+
+		/* if (contentType == "undefined") {
+			contentType = "application/x-www-form-urlencoded; charset=UTF-8";
+		} */
+		$.ajax({
+			type : "POST",
+			url : getRootPath() + url,
+			async : _async,
+			contentType : contentType,
+			dataType : "json", //表示返回值类型
+			data : params,
+			success : successCallback,
+			error : errorCallback
+		});
+	}
+	
+	function lengthOfNum(num){
+		var length = 1;
+		var _num = num;
+		while((_num=_num/10) >= 1){
+			length++;
+		}
+		return length;
+	}
+</script>
+
+</html>
