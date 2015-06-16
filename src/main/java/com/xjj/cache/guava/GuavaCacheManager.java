@@ -20,16 +20,16 @@ import com.xjj.utils.SpringContextUtil;
 
 
 /**
- * 本地缓存监视和管理工具
+ * Guava缓存监视和管理工具
  * @author XuJijun
  *
  */
-public class LocalCacheManager {
-	// cacheName -> cache Object
+public class GuavaCacheManager {
+	//保存一个Map: cacheName -> cache Object，以便根据cacheName获取Guava cache对象
 	private static Map<String, ? extends GuavaAbstractLoadingCache<Object, Object>> cacheNameToObjectMap = null;
 
 	/**
-	 * 获取所有YsbAbstractLoadingCache子类的实例，即所有的Cache对象
+	 * 获取所有GuavaAbstractLoadingCache子类的实例，即所有的Guava Cache对象
 	 * @return
 	 */
 	
@@ -52,7 +52,7 @@ public class LocalCacheManager {
 	}
 	
 	/**
-	 * 获取所有缓存的名字（类名称）
+	 * 获取所有缓存的名字（即缓存实现类的名称）
 	 * @return
 	 */
 	public static Set<String> getCacheNames() {
@@ -69,6 +69,7 @@ public class LocalCacheManager {
 		List<String> cacheNameList = new ArrayList<>(cacheMap.keySet());
 		Collections.sort(cacheNameList);//按照字母排序
 
+		//遍历所有缓存，获取统计数据
 		ArrayList<Map<String, Object>> list = new ArrayList<>();
 		for(String cacheName : cacheNameList){
 			list.add(getCacheStatsToMap(cacheName));
@@ -79,7 +80,7 @@ public class LocalCacheManager {
 	
 	/**
 	 * 返回一个缓存的统计数据
-	 * @param cacheClass
+	 * @param cacheName
 	 * @return Map<统计指标，统计数据>
 	 */
 	private static Map<String, Object> getCacheStatsToMap(String cacheName) {
@@ -106,7 +107,6 @@ public class LocalCacheManager {
 		if(cache.getHighestTime()!=null){
 			map.put("highestTime", df.format(cache.getHighestTime()));	
 		}
-		
 		
 		return map;
 	}

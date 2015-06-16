@@ -12,7 +12,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
 /**
- * 抽象缓存类、缓存模板。
+ * 抽象Guava缓存类、缓存模板。
  * 子类需要实现fetchData(key)，从数据库或其他数据源（如Redis）中获取数据。
  * 子类调用getValue(key)方法，从缓存中获取数据，并处理不同的异常，比如value为null时的InvalidCacheLoadException异常。
  * 
@@ -30,24 +30,21 @@ public abstract class GuavaAbstractLoadingCache <K, V> {
 	private int expireAfterWriteDuration = 60;		//数据存在时长，子类在构造方法中调用setExpireAfterWriteDuration(int duration)来更改
 	private TimeUnit timeUnit = TimeUnit.MINUTES;	//时间单位（分钟）
 	
-	//Cache初始化或被重置的时间
-	private Date resetTime;
-	//历史最高记录数
-	private long highestSize=0;
-	//创造历史记录的时间
-	private Date highestTime;
+	private Date resetTime;		//Cache初始化或被重置的时间
+	private long highestSize=0;	//历史最高记录数
+	private Date highestTime;	//创造历史记录的时间
 	
 	private LoadingCache<K, V> cache;
 	
 	/**
 	 * 通过调用getCache().get(key)来获取数据 
-	 * @return
+	 * @return cache
 	 */
 	public LoadingCache<K, V> getCache() {
 		if(cache == null){	//使用双重校验锁保证只有一个cache实例
 			synchronized (this) {
 				if(cache == null){
-					cache = CacheBuilder.newBuilder().maximumSize(maximumSize)		//缓存数据的最大条目
+					cache = CacheBuilder.newBuilder().maximumSize(maximumSize)		//缓存数据的最大条目，也可以使用.maximumWeight(weight)代替
 							.expireAfterWrite(expireAfterWriteDuration, timeUnit)	//数据被创建多久后被移除
 							.recordStats()											//启用统计
 							.build(new CacheLoader<K, V>() {
@@ -67,7 +64,7 @@ public abstract class GuavaAbstractLoadingCache <K, V> {
 	}
 	
 	/**
-	 * 从数据库或其他数据源中获取一个key-value，并被加载到缓存中。
+	 * 根据key从数据库或其他数据源中获取一个value，并被自动保存到缓存中。
 	 * @param key
 	 * @return value,连同key一起被加载到缓存中的。 
 	 */

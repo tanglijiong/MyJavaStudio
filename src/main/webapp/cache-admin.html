@@ -75,7 +75,6 @@
 		var html = "<table><tr><th>Cache名称</th> <th>数据量统计</th> <th>命中统计</th> <th>加载统计</th> <th>开始/重置时间</th> <th>操作</th> </tr>";
 		$.each(jsonResult.data, function(idx, obj){
 			html += "<tr><th>" + obj.cacheName + "</th>"
-				/* + "<td>" + obj.size + "/" + obj.maximumSize + "</td>" */
 				+ "<td>" + sizeStatistics(obj) + "</td>"
 				+ "<td>" + hitStatistics(obj) + "</td>"
 				+ "<td>" + loadStatistics(obj) + "</td>"
@@ -88,7 +87,6 @@
 		});
 		html += "</table>";
 		$("#response").html(html);
-		//$("#responseRawData").html(JSON.stringify(jsonResult, null, "\t"));
 	}
 
 	function resetCache(cacheName){
@@ -128,7 +126,6 @@
 		var html = "<label class='highlight'>Cache名称：" + pageParam.cacheName + "</label><br/><br/>";
 		html += "<a href='javascript:void(0)' onclick='firstPage();'>首页 </a>\t";
 		html += "<a href='javascript:void(0)' onclick='previousPage();'>上一页 </a>\t";
-		//html += "第" + jsonResult.pageNo + "页（共" + jsonResult.totalPage + "页）\t";
 		html += "第<input type='number' id='pageNo' min='1' max='" + jsonResult.totalPage + "' value='" + jsonResult.pageNo + "' size='" + lengthOfNum(jsonResult.totalPage) + "' />页（共" + jsonResult.totalPage + "页）\t";
 		html += "<a href='javascript:void(0)' onclick='nextPage();'>下一页 </a>\t";
 		html += "<a href='javascript:void(0)' onclick='lastPage();'>末页</a>\t";
@@ -216,9 +213,6 @@
 	function ajaxRequest(url, params, successCallback, contentType,	errorCallback, async) {
 		var _async = async || true;
 
-		/* if (contentType == "undefined") {
-			contentType = "application/x-www-form-urlencoded; charset=UTF-8";
-		} */
 		$.ajax({
 			type : "POST",
 			url : getRootPath() + url,

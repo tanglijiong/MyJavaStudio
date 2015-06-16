@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xjj.cache.guava.LocalCacheManager;
+import com.xjj.cache.guava.GuavaCacheManager;
 import com.xjj.json.JsonResult;
 import com.xjj.json.PageParams;
 import com.xjj.json.PageResult;
@@ -35,7 +35,7 @@ public class CacheAdminController {
 		
 		switch (cacheName) {
 		case "*":
-			jsonResult.setData(LocalCacheManager.getAllCacheStats());
+			jsonResult.setData(GuavaCacheManager.getAllCacheStats());
 			jsonResult.setMessage("成功获取了所有的cache！");
 			break;
 
@@ -55,7 +55,7 @@ public class CacheAdminController {
 	public JsonResult cacheReset(String cacheName) {
 		JsonResult jsonResult = new JsonResult();
 		
-		LocalCacheManager.resetCache(cacheName);
+		GuavaCacheManager.resetCache(cacheName);
 		jsonResult.setMessage("已经成功重置了" + cacheName + "！");
 	
 		return jsonResult;
@@ -90,6 +90,6 @@ public class CacheAdminController {
 		param.put("cacheName", cacheName);
 		page.setParams(param);
 		
-		return LocalCacheManager.queryDataByPage(page);
+		return GuavaCacheManager.queryDataByPage(page);
 	}
 }
