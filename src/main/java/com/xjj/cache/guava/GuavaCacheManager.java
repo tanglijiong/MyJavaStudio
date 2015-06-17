@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentMap;
 import com.google.common.cache.CacheStats;
 import com.xjj.json.PageParams;
 import com.xjj.json.PageResult;
-import com.xjj.utils.SpringContextUtil;
+import com.xjj.util.SpringContextUtil;
 
 
 /**

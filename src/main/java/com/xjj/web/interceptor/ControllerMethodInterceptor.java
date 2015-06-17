@@ -1,11 +1,14 @@
 package com.xjj.web.interceptor;
 
+import java.lang.reflect.Method;
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xjj.annotation.NoLogin;
 
 /**
  * 方法拦截器，拦截Controller中的方法，记录log
@@ -19,6 +22,12 @@ public class ControllerMethodInterceptor implements MethodInterceptor {
 
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
+		Method method = invocation.getMethod();
+		
+		if(method.isAnnotationPresent(NoLogin.class)){
+			logger.info("我不需要登录！");
+		}
+		
 		logger.info("Before: interceptor name: {}", invocation.getMethod().getName());
 		
 		logger.info("Arguments: {}", jsonMapper.writeValueAsString(invocation.getArguments()));

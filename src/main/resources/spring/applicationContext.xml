@@ -22,6 +22,6 @@
 	</bean> -->
 	
 	<!-- Spring管理工具 -->
-	<bean id="springContextUtil" class="com.xjj.utils.SpringContextUtil"></bean>
+	<bean id="springContextUtil" class="com.xjj.util.SpringContextUtil"></bean>
 
 </beans>

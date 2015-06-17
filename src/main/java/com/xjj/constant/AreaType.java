@@ -1,4 +1,4 @@
-package com.xjj.constants;
+package com.xjj.constant;
 
 /**
  * 地区类型，和数据库area表中的类型一致

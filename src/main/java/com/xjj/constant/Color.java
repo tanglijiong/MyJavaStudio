@@ -1,4 +1,4 @@
-package com.xjj.constants;
+package com.xjj.constant;
 
 public enum Color {
 	RED("红色"){

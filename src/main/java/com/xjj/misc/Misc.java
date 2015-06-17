@@ -72,4 +72,10 @@ public class Misc {
 			System.out.println("hahaha");
 		}
 	}
+	
+	
+	@Test
+	public void maxInteger() {
+		System.out.println(Integer.MAX_VALUE);
+	}
 }

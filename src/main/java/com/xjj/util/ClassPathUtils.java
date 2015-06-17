@@ -1,4 +1,4 @@
-package com.xjj.utils;
+package com.xjj.util;
 
 import java.io.IOException;
 import java.io.InputStream;

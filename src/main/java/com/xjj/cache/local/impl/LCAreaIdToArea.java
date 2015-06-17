@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.xjj.cache.guava.GuavaAbstractLoadingCache;
 import com.xjj.cache.local.ILocalCache;
-import com.xjj.constants.AreaType;
+import com.xjj.constant.AreaType;
 import com.xjj.entity.Area;
 
 /**
