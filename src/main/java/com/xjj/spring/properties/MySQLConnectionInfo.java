@@ -13,14 +13,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MySQLConnectionInfo {
-	//@Value("#{configProperties['mysql.url']}")
-	@Value("${mysql.url}")
+	@Value("${db.url}")
     private String url;
-    //@Value("#{configProperties['mysql.userName']}")
-	@Value("${mysql.username}")
+	@Value("${db.username}")
     private String userName;
-   // @Value("#{configProperties['mysql.password']}")
-	@Value("${mysql.password}")
+	@Value("${db.password}")
     private String password;
 
     /**
