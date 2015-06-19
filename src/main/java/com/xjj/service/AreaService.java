@@ -7,7 +7,7 @@ import com.xjj.entity.Area;
  * @author XuJijun
  *
  */
-public interface IAreaService {
+public interface AreaService {
 	/**
 	 * 根据areaId获取Area
 	 * @param areaId

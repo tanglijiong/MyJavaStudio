@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xjj.entity.Area;
 import com.xjj.json.JsonResult;
-import com.xjj.service.IAreaService;
+import com.xjj.service.AreaService;
 
 /**
  * 测试用Map接收参数
@@ -17,7 +17,7 @@ import com.xjj.service.IAreaService;
 @RequestMapping(value = "/cache/test/")
 public class CacheTestController {
 	@Autowired
-	IAreaService areaService;
+	AreaService areaService;
 	
 	/**
 	 * 根据AreaId获得一个Area

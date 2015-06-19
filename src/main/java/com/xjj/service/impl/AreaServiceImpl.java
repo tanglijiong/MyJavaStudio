@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.xjj.cache.local.ILocalCache;
 import com.xjj.entity.Area;
-import com.xjj.service.IAreaService;
+import com.xjj.service.AreaService;
 
 
 @Service
-public class AreaService implements IAreaService {
+public class AreaServiceImpl implements AreaService {
 	@Resource(name="LCAreaIdToArea")
 	ILocalCache<Integer, Area> lCAreaIdToArea;
 	

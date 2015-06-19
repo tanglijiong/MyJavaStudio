@@ -18,9 +18,9 @@
 		<property name="password" value="${db.password}" />
 	</bean>
 
-	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:com/xjj/mapper/*/*.xml" />
+		<property name="mapperLocations" value="classpath:com/xjj/mapper/*.xml" />
 	</bean>	
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
