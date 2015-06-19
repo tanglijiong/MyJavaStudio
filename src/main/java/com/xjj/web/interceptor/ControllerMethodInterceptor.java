@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xjj.annotation.NoLogin;
+import com.xjj.annotation.LoginNotRequired;
 
 /**
  * 方法拦截器，拦截Controller中的方法，记录log
@@ -24,7 +24,7 @@ public class ControllerMethodInterceptor implements MethodInterceptor {
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		Method method = invocation.getMethod();
 		
-		if(method.isAnnotationPresent(NoLogin.class)){
+		if(method.isAnnotationPresent(LoginNotRequired.class)){
 			logger.info("我不需要登录！");
 		}
 		

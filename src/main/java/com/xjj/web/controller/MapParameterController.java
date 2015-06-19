@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xjj.annotation.NoLogin;
+import com.xjj.annotation.LoginNotRequired;
 
 /**
  * 测试用Map接收参数
@@ -27,7 +27,7 @@ public class MapParameterController {
 	 * @return
 	 */
 	@RequestMapping(value = "map")
-	@NoLogin
+	@LoginNotRequired
 	public Map<String, Object> test1(@RequestParam Map<String, Object> params) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap = params;
