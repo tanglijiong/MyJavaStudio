@@ -8,17 +8,6 @@
 						http://www.springframework.org/schema/tx/spring-tx.xsd  
                         http://www.springframework.org/schema/context   
                         http://www.springframework.org/schema/context/spring-context.xsd">
-	
-	
-	<context:component-scan base-package="com.xjj.service, com.xjj.spring"/>
-	
-	<context:property-placeholder location="classpath:db.properties, classpath:redis.properties" />
-	
-	<!-- <bean id="testService" class="com.xjj.service.impl.TestServiceImpl">
-		<property name="url" value="${db.url}"></property>
-	</bean> -->
-	
-	<!-- Spring管理工具 -->
-	<bean id="springContextUtil" class="com.xjj.util.SpringContextUtil"></bean>
+
 
 </beans>
