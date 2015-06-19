@@ -4,7 +4,7 @@
 	<groupId>com.xjj</groupId>
 	<artifactId>MyJavaStudio</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 	<name>MyJavaStudio</name>
 	<url>http://maven.apache.org</url>
 
@@ -38,7 +38,8 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.12</version>
 		</dependency>
-
+		
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
@@ -49,6 +50,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.1.6.RELEASE</version>
 		</dependency>
+
 		
 		<!-- databind会自动引用core和annotations，所以不用声明另外两个 -->
 		<dependency>
@@ -79,6 +81,20 @@
 			<version>2.7.2</version>
 		</dependency>
 				
+	<!-- Begin of DB related -->			
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>4.1.6.RELEASE</version>
+		</dependency>
+		
+		<!-- mysql connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.35</version>
+		</dependency>
+				
 		<!-- MyBatis -->		
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -98,6 +114,8 @@
 			<artifactId>HikariCP-java6</artifactId>
 			<version>2.3.8</version>
 		</dependency>
+		
+	<!-- End of DB related -->	
 				
 		<!-- For AOP -->		
 		<dependency>
