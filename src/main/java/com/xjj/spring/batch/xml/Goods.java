@@ -1,4 +1,4 @@
-package com.xjj.springBatch.xml;
+package com.xjj.spring.batch.xml;
 
 import java.util.Date;
 

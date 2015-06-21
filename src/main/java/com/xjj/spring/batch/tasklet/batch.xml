@@ -19,11 +19,11 @@
         </batch:step>
     </batch:job>
 
-    <bean id="hello" class="com.xjj.springBatch.taskLet.WriteTasklet">
+    <bean id="hello" class="com.xjj.spring.batch.tasklet.WriteTasklet">
         <property name="message" value="Hello，你好！ "></property>
     </bean>
 
-    <bean id="world" class="com.xjj.springBatch.taskLet.WriteTasklet">
+    <bean id="world" class="com.xjj.spring.batch.tasklet.WriteTasklet">
         <property name="message" value=" World!"></property>
     </bean>
 </beans>

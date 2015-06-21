@@ -1,4 +1,4 @@
-package com.xjj.springBatch.csv;
+package com.xjj.spring.batch.csv;
 
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;

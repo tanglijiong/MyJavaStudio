@@ -1,4 +1,4 @@
-package com.xjj.springBatch.csv;
+package com.xjj.spring.batch.csv;
 
 public class Student {
     /** ID */

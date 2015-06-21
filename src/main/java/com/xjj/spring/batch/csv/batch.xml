@@ -20,7 +20,7 @@
 
 	<!-- 读取csv文件 -->
     <bean id="csvItemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
-        <property name="resource" value="classpath:com/xjj/springBatch/csv/inputFile.csv"/>
+        <property name="resource" value="classpath:com/xjj/spring/batch/csv/inputFile.csv"/>
         <property name="lineMapper">
             <bean
                 class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -34,7 +34,7 @@
         </property>
     </bean>
 
-    <bean id="student" class="com.xjj.springBatch.csv.Student"></bean>
+    <bean id="student" class="com.xjj.spring/batch.csv.Student"></bean>
 
     <!-- lineTokenizer -->
     <bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
@@ -51,7 +51,7 @@
 
 	<!-- 写CSV文件 -->
     <bean id="csvItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
-        <property name="resource" value="file:src/com/xjj/springBatch/csv/outputFile.csv"/>
+        <property name="resource" value="file:src/com/xjj/spring/batch/csv/outputFile.csv"/>
         <property name="lineAggregator">
             <bean class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
                 <property name="delimiter" value=","></property>

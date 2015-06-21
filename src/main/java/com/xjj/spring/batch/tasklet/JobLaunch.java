@@ -1,4 +1,4 @@
-package com.xjj.springBatch.csv;
+package com.xjj.spring.batch.tasklet;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
@@ -9,9 +9,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class JobLaunch {
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("com/xjj/springBatch/csv/batch.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/xjj/spring/batch/taskLet/batch.xml");
 		JobLauncher launcher = (JobLauncher) context.getBean("jobLauncher");
-		Job job = (Job) context.getBean("csvJob"); //使用这个标签中的id：<batch:job id="csvJob">
+		Job job = (Job) context.getBean("helloWorldJob");
 
 		try {
 			/* 由jobLauncher来运行Job */

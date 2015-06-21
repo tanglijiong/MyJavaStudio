@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 扫描@Component -->
-	<context:component-scan base-package="com.xjj.springBatch"></context:component-scan>  
+	<context:component-scan base-package="com.xjj.spring.batch"></context:component-scan>  
 
 	<!-- 用来启动Job -->
     <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
