@@ -29,7 +29,7 @@ public class CibaApi {
 			HttpEntity entity = response.getEntity();  
 			 if (entity != null) {    
 		            InputStream instreams = entity.getContent();    
-		            String str = convertStreamToString(instreams);  
+		            String str = HttpHelper.convertStreamToString(instreams);  
 		            System.out.println("Do something");   
 		            System.out.println(str);  
 		            // Do not need the rest    
@@ -65,25 +65,4 @@ public class CibaApi {
 		}
 
 	}
-	
-	public static String convertStreamToString(InputStream is) {      
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));      
-        StringBuilder sb = new StringBuilder();      
-       
-        String line = null;      
-        try {      
-            while ((line = reader.readLine()) != null) {  
-                sb.append(line + "\n");      
-            }      
-        } catch (IOException e) {      
-            e.printStackTrace();      
-        } finally {      
-            try {      
-                is.close();      
-            } catch (IOException e) {      
-               e.printStackTrace();      
-            }      
-        }      
-        return sb.toString();      
-    }  
 }
