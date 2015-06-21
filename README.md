@@ -5,22 +5,27 @@ My Java Studio, some testing code and usage of open-source code, which are teste
 And some customized utilities, encapsulated open-source code. 
 另外还有一些小工具、以及对开源代码的二次封装。
 
-Java:
-- Cache: A local cache example using ConcurrentHashMap (package: com.xjj.cache.local)
+## Java and Framework:
+- Cache related:
+	- A local cache example using ConcurrentHashMap (package: com.xjj.cache.local)
+	- Guava Cache: an example for using Guava cache framework, including management web page	
+	- Redis: A simple example using spring data redis
+- Database related:
+	- MyBatis (resource: db.properties, spring/db.xml; com.xjj.dao, com.xjj.mapper)
+	- HikariCP connection pool (resource: spring/db.xml)
 - FreeMarker: A simple implementation of freeMarker
 - FTP: A simple FTP client with progress shown
-- Guava Cache: an example for using Guava cache framework, including management web page
 - HTTP Client
 - Intercepter: MethodInterceptor
 - Math and Format: BigDecimal, NumberFormat
 - POI/Excel example
-- Redis: A simple example using spring data redis
-- Spring Batch
-- SpringMVC example
+- Spring related:
+	- Spring Batch (com.xjj.springBatch)
+	- SpringMVC example
 - Timers
 - Utilities: ClassPathUtils, DateUtils, StringUtils
 
-Web:
+## Java Web:
 - Example to trigger the web browser to be in Full Screen state.
 - SpringMVC receive Form Data or Query String using Map, MultiValueMap.
 - SpringMVC receive JSON data using Map.

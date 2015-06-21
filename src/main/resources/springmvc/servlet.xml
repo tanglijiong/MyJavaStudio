@@ -18,9 +18,9 @@
 
 	<!-- 定义不被SpringMVC拦截的uri -->	   
 	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/screen/" mapping="/screen/**" />
 	<mvc:resources location="/" mapping="/*.html"/>
 	<mvc:resources location="/" mapping="/*.js"/>
-	<mvc:resources location="/data/" mapping="/data/**" />
 
 	<bean id="controllerMethodInterceptor" class="com.xjj.web.interceptor.ControllerMethodInterceptor"/>
 	
