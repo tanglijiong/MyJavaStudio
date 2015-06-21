@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Random;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -41,8 +40,8 @@ public class HttpHelper {
 		return sb.toString();
 	}
 
-	public static String doGet(String url) {
-		String result = null;
+	public static HttpResult doGet(String url) {
+		HttpResult result = new HttpResult();
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet(url);
 		request.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
@@ -50,10 +49,11 @@ public class HttpHelper {
 		try {
 			HttpResponse response = client.execute(request);
 			HttpEntity entity = response.getEntity();
+			result.setCode(response.getStatusLine().getStatusCode());
 			if (entity != null) {
 				InputStream instreams = entity.getContent();
-				result = convertStreamToString(instreams);
-				if(response.getStatusLine().getStatusCode()!=200){
+				result.setMsg(convertStreamToString(instreams));
+				if(result.getCode()!=200){
 					request.abort();
 				}
 			}
@@ -67,9 +67,7 @@ public class HttpHelper {
 	}
 
 	public static void main(String[] args) {
-		
-		
-		String result = doGet("http://blog.csdn.net/clementad/article/details/46491701");
-		System.out.println(result);
+		HttpResult result = doGet("http://blog.csdn.net/clementad/article/details/46491701");
+		System.out.println(result.getMsg());
 	}
 }

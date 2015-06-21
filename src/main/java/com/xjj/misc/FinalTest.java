@@ -2,11 +2,11 @@ package com.xjj.misc;
 
 
 
-public class TestFinal {
+public class FinalTest {
 	
 	
 	public static void main(String[] args) {
-		TestFinal tf = new TestFinal();
+		FinalTest tf = new FinalTest();
 		Person p = tf.new Person();
 		p.setName("Li");
 		p.setAge(18);
@@ -18,7 +18,7 @@ public class TestFinal {
 			
 	}
 	
-	private void changeName(TestFinal tf, final Person p, String newName) {
+	private void changeName(FinalTest tf, final Person p, String newName) {
 		//p = tf.new Person();
 		p.setName(newName);
 	}
