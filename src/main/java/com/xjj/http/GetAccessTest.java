@@ -2,11 +2,14 @@ package com.xjj.http;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.xjj.util.FileAccessUtils;
 import com.xjj.util.XjjRandom;
 
 public class GetAccessTest {
-	
+	private static Logger logger = LoggerFactory.getLogger(GetAccessTest.class);
 	
 	
 	public static void main(String[] args) {
@@ -24,9 +27,9 @@ public class GetAccessTest {
 			HttpResult result = HttpHelper.doGet(url);
 			if(result.getCode()==200){
 				succCount ++;
-				System.out.println(url + " request succeeded. No." + succCount);
+				logger.info("{} request succeeded. No.{}", url, succCount);
 			}else {
-				System.out.println(result);
+				logger.info(result.toString());
 			}
 			
 			long interval = Math.abs(xjjRandom.getRandomLong(maxInterval));
@@ -36,13 +39,13 @@ public class GetAccessTest {
 			}
 			
 			long currentTimeInSecond = System.currentTimeMillis()/1000;
-			System.out.println("Time to the end: " + (endTime/1000-currentTimeInSecond)/60 + "\'" + (endTime/1000-currentTimeInSecond)%60 + "\". Next request in " + interval/1000 + " seconds...");
+			logger.info("Time to the end: {}'{}\". Next request in {} seconds...", (endTime/1000-currentTimeInSecond)/60, (endTime/1000-currentTimeInSecond)%60, interval/1000);
 			try {
 				Thread.sleep(interval);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Completed. " + succCount + " times in total.");
+		logger.info("Completed. {} times in total.", succCount);
 	}
 }
