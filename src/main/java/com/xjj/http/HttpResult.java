@@ -18,5 +18,10 @@ public class HttpResult {
 		this.msg = msg;
 	}
 	
+	@Override
+	public String toString() {
+		return "HttpResult [code=" + code + ", msg=" + msg + "]";
+	}
+	
 	
 }
