@@ -1,26 +1,32 @@
 package com.xjj.http;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.xjj.util.FileAccessUtils;
-import com.xjj.util.XjjRandom;
+import com.xjj.util.RandomUtils;
 
 public class GetAccessTest {
 	private static Logger logger = LoggerFactory.getLogger(GetAccessTest.class);
 	
-	
 	public static void main(String[] args) {
-		XjjRandom xjjRandom = new XjjRandom();
-		int howLongMinutes = 30;	//Minutes
+		RandomUtils xjjRandom = new RandomUtils();
+		int howLongMinutes = 5;	//Minutes
 		int maxIntervalMinutes = 1; //Minutes
 		ArrayList<String> hosts = FileAccessUtils.readByLines("D:/hosts.txt");
+		Map<String, Integer> urlHitCount = new HashMap<>(hosts.size());
+		for(String host : hosts){
+			urlHitCount.put(host, 0);
+		}
 		
 		long endTime = System.currentTimeMillis() + howLongMinutes*60*1000;
 		long maxInterval = maxIntervalMinutes*60*1000;
 		int succCount = 0;
+		int failCount = 0;
 		
 		while ( System.currentTimeMillis() < endTime) {
 			String url = hosts.get(xjjRandom.getRandomInt(hosts.size()));
@@ -28,7 +34,9 @@ public class GetAccessTest {
 			if(result.getCode()==200){
 				succCount ++;
 				logger.info("{} request succeeded. No.{}", url, succCount);
+				urlHitCount.put(url, urlHitCount.get(url)+1);
 			}else {
+				failCount ++;
 				logger.info(result.toString());
 			}
 			
@@ -46,6 +54,9 @@ public class GetAccessTest {
 				e.printStackTrace();
 			}
 		}
-		logger.info("Completed. {} times in total.", succCount);
+		logger.info("Completed. Succeeded: {}, Failed: {}", succCount, failCount);
+		for(Map.Entry<String, Integer> entry : urlHitCount.entrySet()){
+			System.out.println(entry.getKey() + " : " + entry.getValue());
+		}
 	}
 }
