@@ -8,6 +8,11 @@
 	<name>MyJavaStudio</name>
 	<url>http://maven.apache.org</url>
 
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>	<!-- 解决xml文件中文注释乱码的问题 -->
+	</properties>
+  
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>

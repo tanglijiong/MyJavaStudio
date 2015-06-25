@@ -13,9 +13,10 @@
 	<!-- Hikari Datasource -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
 		<!-- <property name="driverClassName" value="${db.driverClass}" /> --> <!-- 无需指定 -->
-		<property name="jdbcUrl" value="${db.url}" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test??useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}" />
+		<property name="readOnly" value="false" />	<!-- 连接只读数据库时配置为true， 保证安全 -->
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
