@@ -4,8 +4,25 @@
 
 	<!-- 插入数据库用户表 -->
 	<insert id="insertPerson">
-		INSERT INTO t_person(first_name,last_name,birth_date,sex,phone_no)
-		VALUES(#{firstName},#{lastName},#{birthDate},#{sex},#{phoneNo})
+		INSERT INTO t_person(first_name,last_name,birth_date,sex,phone_no,update_dt)
+		VALUES(#{firstName},#{lastName},#{birthDate},#{sex},#{phoneNo},NOW())
 	</insert>
 
+	<select id="selectPersonForUpdate">
+		SELECT id, first_name AS firstName, last_name AS lastName, birth_date AS birthDate, sex, phone_no AS phoneNo
+		FROM t_person 
+		WHERE id=#{id}
+	</select>
+	
+	<update id="updatePersonById">
+		UPDATE t_person SET 
+			first_name=#{firstName}, last_name=#{lastName}, birth_date=#{birthDate}, sex=#{sex}, phone_no=#{phoneNo}
+		WHERE id=#{id}
+	</update>
+	
+	<update id="updatePersonByPhoneNo">
+		UPDATE t_person SET 
+			first_name=#{firstName}, last_name=#{lastName}, birth_date=#{birthDate}, sex=#{sex}
+		WHERE phone_no=#{phoneNo}
+	</update>
 </mapper>

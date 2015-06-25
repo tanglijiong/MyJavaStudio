@@ -25,4 +25,16 @@ public class PersonCRUDTest extends BaseJunit4Test{
 		
 		personService.addPerson(p);
 	}
+	
+	@Test
+	public void updatePersonByPhoneNo(){
+		Person p = new Person();
+		p.setFirstName("六");
+		p.setLastName("李");
+		p.setBirthDate(new Date());
+		p.setSex('F');
+		p.setPhoneNo("13625896321");
+		
+		personService.updatePersonByPhoneNo(p);
+	}
 }

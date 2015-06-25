@@ -15,7 +15,7 @@
 			<PatternLayout>
 				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
 			</PatternLayout>
-			<Policies> <!-- 文件分割规则, file cut policy -->
+			<Policies> <!-- 文件分割规则 -->
 				<OnStartupTriggeringPolicy />
 				<TimeBasedTriggeringPolicy />
 				<SizeBasedTriggeringPolicy size="100 KB" />
@@ -24,7 +24,7 @@
 	</Appenders>
 
 	<Loggers>
-		<Root level="warn"> <!-- 全局配置 -->
+		<Root level="debug"> <!-- 全局配置 -->
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="RollingFile"/>
 		</Root>

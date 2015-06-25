@@ -10,4 +10,6 @@ public interface PersonService {
 	 * @return 成功或失败
 	 */
 	public boolean addPerson(Person person);
+	
+	public boolean updatePersonByPhoneNo(Person person);
 }

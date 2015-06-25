@@ -3,6 +3,7 @@ package com.xjj.entity;
 import java.util.Date;
 
 public class Person {
+	private int id;
 	private String firstName;
 	private String lastName;
 	private Date birthDate;
@@ -38,5 +39,11 @@ public class Person {
 	}
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }
