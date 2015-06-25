@@ -19,7 +19,7 @@ public class DateUtils {
 	public final static String DFyyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
 	public final static String DFyyyyMMddHHmmss2 = "yyyyMMddHHmmss";
 	public final static String DFyyyyMMddHHmmssS = "yyyy-MM-dd HH:mm:ss.S";
-	public final static String DFHHmmssS = "HH:mm:ss.S";
+	public final static String DFHHmmssSSS = "HH:mm:ss.SSS";
 
 	public final static long millisecondsPerMinute = 60L * 1000L;
 	public final static long millisecondsPerHour = 60L * millisecondsPerMinute;
@@ -66,7 +66,7 @@ public class DateUtils {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(dateToString(new Date(), DateUtils.DFHHmmssS));
+		System.out.println(dateToString(new Date(), DateUtils.DFHHmmssSSS));
 		
 		System.out.println(System.currentTimeMillis());
 		System.out.println(Calendar.getInstance().getTimeInMillis());

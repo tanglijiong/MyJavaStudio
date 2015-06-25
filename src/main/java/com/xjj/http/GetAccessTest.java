@@ -10,11 +10,11 @@ import com.xjj.util.RandomUtils;
 
 public class GetAccessTest {
 	private static String getTimeString() {
-		return DateUtils.getCurrentDateString(DateUtils.DFHHmmssS);
+		return DateUtils.getCurrentDateString(DateUtils.DFHHmmssSSS);
 	}
 	
 	private static void logMsg(String format, Object... args){
-		System.out.println(getTimeString() + " " + String.format(format, args));
+		System.out.println(getTimeString() + " [myLog] " + String.format(format, args));
 	}
 	
 	public static void main(String[] args) {
@@ -31,7 +31,11 @@ public class GetAccessTest {
 			howLongMinutes = Integer.parseInt(args[0]);
 		}
 
-		logMsg("Program started, will last for %s minutes.", howLongMinutes);
+		if(args.length > 1){
+			maxIntervalMinutes = Integer.parseInt(args[1]);
+		}
+		
+		logMsg("Program started, will last for %s minutes, with maximum interval %s minutes", howLongMinutes, maxIntervalMinutes);
 		
 		long endTime = System.currentTimeMillis() + howLongMinutes*60*1000;
 		long maxInterval = maxIntervalMinutes*60*1000;

@@ -38,7 +38,7 @@
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSourceBoneCp" />
+		<property name="dataSource" ref="dataSourceHikari" />
 		<property name="mapperLocations" value="classpath:com/xjj/mapper/*.xml" />
 	</bean>	
 
@@ -51,7 +51,7 @@
 	<tx:annotation-driven  transaction-manager="transactionManager"/>
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSourceBoneCp"></property>
+		<property name="dataSource" ref="dataSourceHikari"></property>
 	</bean>
 
 </beans>
