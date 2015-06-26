@@ -29,7 +29,7 @@ public class PersonCRUDTest extends BaseJunit4Test{
 	@Test
 	public void updatePersonByPhoneNo(){
 		Person p = new Person();
-		p.setFirstName("六");
+		p.setFirstName("七");
 		p.setLastName("李");
 		p.setBirthDate(new Date());
 		p.setSex('F');

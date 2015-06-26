@@ -24,9 +24,10 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	@Transactional
+	//@Transactional
 	public boolean updatePersonByPhoneNo(Person person) {
 		boolean result = personDao.updatePersonByPhoneNo(person)>0 ? true : false;
+		addPerson(person); //测试@Transactional嵌套
 		return result;
 	}
 
