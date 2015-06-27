@@ -7,6 +7,7 @@ import java.util.Map;
 import com.xjj.util.DateUtils;
 import com.xjj.util.FileAccessUtils;
 import com.xjj.util.RandomUtils;
+import com.xjj.util.RegexUtils;
 
 public class GetAccessTest {
 	private static String getTimeString() {
@@ -21,7 +22,7 @@ public class GetAccessTest {
 		RandomUtils xjjRandom = new RandomUtils();
 		int howLongMinutes = 35;	//Minutes
 		int maxIntervalMinutes = 1; //Minutes
-		String hostFileName = "D:/hosts.txt";
+		String hostFileName = "D:/httphosts.txt";
 		
 		if(args.length > 0){ //First Param: How long 
 			howLongMinutes = Integer.parseInt(args[0]);
@@ -53,7 +54,8 @@ public class GetAccessTest {
 			HttpResult result = HttpHelper.doGet(url);
 			if(result.getCode()==200){
 				succCount ++;
-				logMsg("%s request succeeded. No.%s", url, succCount);
+				String websiteHitCount = RegexUtils.getFirstMatch(result.getMsg(), "\\d+人阅读");
+				logMsg("%s request succeeded, %s. No.%s", url, websiteHitCount, succCount);
 				urlHitCount.put(url, urlHitCount.get(url)+1);
 			}else {
 				failCount ++;

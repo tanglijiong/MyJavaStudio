@@ -24,7 +24,13 @@ And some customized utilities, encapsulated open-source code.
 	- Spring Batch (com.xjj.spring.batch)
 	- SpringMVC example
 - Timers
-- Utilities: ClassPathUtils, DateUtils, StringUtils
+- Utilities:
+	- ClassPathUtils
+	- DateUtils
+	- FileAccessUtils
+	- RandomUtils
+	- RegexUtils
+	- StringUtils
 
 ## Java Web:
 - Example to trigger the web browser to be in Full Screen state.

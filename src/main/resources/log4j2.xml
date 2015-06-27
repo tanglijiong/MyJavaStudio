@@ -24,7 +24,7 @@
 	</Appenders>
 
 	<Loggers>
-		<Root level="debug"> <!-- 全局配置 -->
+		<Root level="warn"> <!-- 全局配置 -->
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="RollingFile"/>
 		</Root>
