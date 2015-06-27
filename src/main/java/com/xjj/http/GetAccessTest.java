@@ -21,18 +21,24 @@ public class GetAccessTest {
 		RandomUtils xjjRandom = new RandomUtils();
 		int howLongMinutes = 35;	//Minutes
 		int maxIntervalMinutes = 1; //Minutes
-		ArrayList<String> hosts = FileAccessUtils.readByLines("D:/hosts.txt");
-		Map<String, Integer> urlHitCount = new HashMap<>(hosts.size());
-		for(String host : hosts){
-			urlHitCount.put(host, 0);
-		}
+		String hostFileName = "D:/hosts.txt";
 		
-		if(args.length > 0){
+		if(args.length > 0){ //First Param: How long 
 			howLongMinutes = Integer.parseInt(args[0]);
 		}
 
-		if(args.length > 1){
+		if(args.length > 1){ //Second Param: Interval
 			maxIntervalMinutes = Integer.parseInt(args[1]);
+		}
+
+		if(args.length > 2){ //Third Param: File Path and Name
+			hostFileName = args[2];
+		}
+		
+		ArrayList<String> hosts = FileAccessUtils.readByLines(hostFileName);
+		Map<String, Integer> urlHitCount = new HashMap<>(hosts.size());
+		for(String host : hosts){
+			urlHitCount.put(host, 0);
 		}
 		
 		logMsg("Program started, will last for %s minutes, with maximum interval %s minutes", howLongMinutes, maxIntervalMinutes);
