@@ -19,7 +19,7 @@ public class RegexTest {
 	@Test
 	public void getFirstMatch(){
 		String INPUT = "我是123，不是678。";
-		String REGEX = "\\d+";
+		String REGEX = "不是\\d+";
 		
 		String result = RegexUtils.getFirstMatch(INPUT, REGEX);
 		System.out.println(result);
