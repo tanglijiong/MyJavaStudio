@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.xjj.BaseJunit4Test;
+import com.xjj.dao.PersonDao;
 import com.xjj.entity.Person;
 import com.xjj.service.PersonService;
 
@@ -13,6 +14,7 @@ public class PersonCRUDTest extends BaseJunit4Test{
 
 	@Autowired
 	PersonService personService;
+	@Autowired PersonDao personDao;
 	
 	@Test
 	public void addNewPerson(){
@@ -28,7 +30,10 @@ public class PersonCRUDTest extends BaseJunit4Test{
 	
 	@Test
 	public void updatePersonByPhoneNo(){
-		Person p = new Person();
+		
+		Person p = personDao.selectPersonForUpdate(1);
+		
+		//Person p = new Person();
 		p.setFirstName("七");
 		p.setLastName("李");
 		p.setBirthDate(new Date());

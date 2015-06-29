@@ -8,7 +8,7 @@
 		VALUES(#{firstName},#{lastName},#{birthDate},#{sex},#{phoneNo},NOW())
 	</insert>
 
-	<select id="selectPersonForUpdate">
+	<select id="selectPersonForUpdate" resultType="com.xjj.entity.Person">
 		SELECT id, first_name AS firstName, last_name AS lastName, birth_date AS birthDate, sex, phone_no AS phoneNo
 		FROM t_person 
 		WHERE id=#{id}

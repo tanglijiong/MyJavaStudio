@@ -29,12 +29,15 @@
 			<AppenderRef ref="RollingFile"/>
 		</Root>
 
-		<!-- 为某些包/类配置Log级别 -->
-		<!-- <Logger name="com.xjj" level="TRACE"/> -->
-		<Logger name="com.xjj" level="trace" additivity="false">
+		<!-- 为某些包/类配置特别的Log级别 -->
+		<Logger name="com.xjj" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
+		<Logger name="com.xjj.dao" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+				
 		<Logger name="org.springframework.cache" level="error" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
