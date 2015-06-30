@@ -1,5 +1,6 @@
 package com.xjj.util;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -67,5 +68,16 @@ public class RandomUtils {
 			i++;
 		}
 		return null;
+	}
+	
+	public static void main(String[] args) {
+		Set<String> set = new HashSet<>();
+		for (int i = 0; i < 12; i++) {
+			set.add("I am: " + i);	
+		}
+		
+		for (int i = 0; i < 10; i++) {
+			System.out.println(getRandomElement(set));
+		}
 	}
 }
