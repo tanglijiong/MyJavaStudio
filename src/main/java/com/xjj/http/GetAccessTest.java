@@ -19,7 +19,6 @@ public class GetAccessTest {
 	}
 	
 	public static void main(String[] args) {
-		RandomUtils xjjRandom = new RandomUtils();
 		int howLongMinutes = 35;	//Minutes
 		int maxIntervalMinutes = 1; //Minutes
 		String hostFileName = "D:/httphosts.txt";
@@ -50,8 +49,8 @@ public class GetAccessTest {
 		int failCount = 0;
 		int bingoCount = 0;
 		
-		while ( System.currentTimeMillis() < endTime) {
-			String url = hosts.get(xjjRandom.getRandomInt(hosts.size()));
+		while ( System.currentTimeMillis() <= endTime) {
+			String url = RandomUtils.getRandomElement(hosts);
 			HttpResult result = HttpHelper.doGet(url);
 			if(result.getCode()==200){
 				succCount ++;
@@ -68,7 +67,7 @@ public class GetAccessTest {
 				logMsg("%s %s", url, result.toString());
 			}
 			
-			long interval = Math.abs(xjjRandom.getRandomLong(maxInterval));
+			long interval = Math.abs(RandomUtils.getRandomLong(maxInterval));
 			
 			if(System.currentTimeMillis()+interval > endTime){
 				break;
