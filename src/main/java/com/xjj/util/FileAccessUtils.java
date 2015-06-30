@@ -26,9 +26,12 @@ public class FileAccessUtils {
         try {
             reader = new BufferedReader(new FileReader(file));
             String tempString = null;
-            // 一次读入一行，直到读入null为文件结束
+            // 一次读入一行（非空），直到读入null为文件结束
             while ((tempString = reader.readLine()) != null) {
-                result.add(tempString);
+            	tempString = tempString.trim();
+            	if(!tempString.equals("")){
+            		result.add(tempString);
+            	}
             }
             reader.close();
         } catch (IOException e) {
@@ -46,7 +49,7 @@ public class FileAccessUtils {
 	}
 	
 	public static void main(String[] args) {
-		ArrayList<String> readByLines = readByLines("D:/hosts.txt");
+		ArrayList<String> readByLines = readByLines("D:/httphosts.txt");
 		
 		System.out.println(readByLines);
 	}
