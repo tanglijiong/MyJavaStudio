@@ -2,6 +2,7 @@ package com.xjj.util;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -64,6 +65,40 @@ public class RandomUtils {
 		for (E e : set) {
 			if(i==rn){
 				return e;
+			}
+			i++;
+		}
+		return null;
+	}
+	
+	/**
+	 * 从map中随机取得一个key
+	 * @param map
+	 * @return
+	 */
+	public static <K, V> K getRandomKeyFromMap(Map<K, V> map) {
+		int rn = getRandomInt(map.size());
+		int i = 0;
+		for (K key : map.keySet()) {
+			if(i==rn){
+				return key;
+			}
+			i++;
+		}
+		return null;
+	}
+	
+	/**
+	 * 从map中随机取得一个value
+	 * @param map
+	 * @return
+	 */
+	public static <K, V> V getRandomValueFromMap(Map<K, V> map) {
+		int rn = getRandomInt(map.size());
+		int i = 0;
+		for (V value : map.values()) {
+			if(i==rn){
+				return value;
 			}
 			i++;
 		}
