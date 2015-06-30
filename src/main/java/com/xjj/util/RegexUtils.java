@@ -21,6 +21,16 @@ public class RegexUtils {
 	public static List<String> getContentByPattern(String INPUT, String REGEX){
 		List<String> resultList = new ArrayList<>();
 		Pattern p = Pattern.compile(REGEX); //根据正则表达式构造一个Pattern对象
+		
+		if(INPUT==null){
+			System.out.println("INPUT不能为NULL！");
+			return resultList;
+		}
+		
+		if(p==null){
+			System.out.println("构造Pattern时发生错误！");
+			return resultList;
+		}
 		Matcher m = p.matcher(INPUT);		//利用patter对象为被匹配的文本构造一个Matcher对象
 		while(m.find()){ //如果在任何位置中发现匹配的字符串……
 			resultList.add(m.group()); //保存匹配到的字符串
@@ -35,7 +45,13 @@ public class RegexUtils {
 	 * @return
 	 */
 	public static String getFirstMatch(String INPUT, String REGEX){
-		return getContentByPattern(INPUT, REGEX).get(0);
+		List<String> ss = getContentByPattern(INPUT, REGEX);
+		if(ss.size()>0){
+			return ss.get(0);
+		}else {
+			return null;
+		}
+		
 	}
 	
 	/**

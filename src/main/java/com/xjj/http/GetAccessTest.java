@@ -48,6 +48,7 @@ public class GetAccessTest {
 		long maxInterval = maxIntervalMinutes*60*1000;
 		int succCount = 0;
 		int failCount = 0;
+		int bingoCount = 0;
 		
 		while ( System.currentTimeMillis() < endTime) {
 			String url = hosts.get(xjjRandom.getRandomInt(hosts.size()));
@@ -55,7 +56,12 @@ public class GetAccessTest {
 			if(result.getCode()==200){
 				succCount ++;
 				String websiteHitCount = RegexUtils.getFirstMatch(result.getMsg(), "\\d+人阅读");
-				logMsg("%s request succeeded, %s. No.%s", url, websiteHitCount, succCount);
+				websiteHitCount = RegexUtils.findFirstNumber(websiteHitCount);
+				if(websiteHitCount.endsWith("99")){
+					websiteHitCount += " ~ Bingo";
+					bingoCount ++;
+				}
+				logMsg("%s request succeeded, read count: %s. No.%s", url, websiteHitCount, succCount);
 				urlHitCount.put(url, urlHitCount.get(url)+1);
 			}else {
 				failCount ++;
@@ -76,9 +82,10 @@ public class GetAccessTest {
 				e.printStackTrace();
 			}
 		}
-		logMsg("Completed. Succeeded: %s, Failed: %s", succCount, failCount);
+		
 		for(Map.Entry<String, Integer> entry : urlHitCount.entrySet()){
 			System.out.println(entry.getKey() + " : " + entry.getValue());
 		}
+		logMsg("Completed. Succeeded: %s, Failed: %s, Bingo: %s", succCount, failCount, bingoCount);
 	}
 }
