@@ -57,4 +57,27 @@
 		<property name="dataSource" ref="dataSourceHikari"></property>
 	</bean>
 
+	<!-- SQL Server Hikari Datasource -->
+	<bean id="sqlServerdataSourceHikari" class="com.zaxxer.hikari.HikariDataSource">
+		<!-- <property name="driverClassName" value="${db.driverClass}" /> --> <!-- 无需指定 -->
+		<property name="jdbcUrl" value="${sql.server.url}" />
+		<property name="username" value="${sql.server.username}" />
+		<property name="password" value="${sql.server.password}" />
+		<property name="readOnly" value="false" />	<!-- 连接只读数据库时配置为true， 保证安全 -->
+		<property name="connectionTimeout" value="30000" />	<!-- 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒 -->
+		<property name="idleTimeout" value="600000" />	<!-- 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟 -->
+		<property name="maxLifetime" value="1800000" />	<!-- 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';） -->
+	</bean>
+
+	<bean id="sqlServerSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="sqlServerdataSourceHikari" />
+		<property name="mapperLocations" value="classpath:com/xjj/mapper/*.xml" />
+	</bean>	
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.xjj.dao" />
+		<property name="annotationClass" value="com.xjj.annotation.SqlServerDb" />	<!-- 只扫描被@SqlServerDb标注的dao -->
+		<property name="sqlSessionFactoryBeanName" value="sqlServerSessionFactory" />
+	</bean>
+	
 </beans>

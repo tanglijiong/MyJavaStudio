@@ -14,6 +14,8 @@ And some customized utilities, encapsulated open-source code.
 - Database related:
 	- MyBatis (resource: db.properties, spring/db.xml; com.xjj.dao, com.xjj.mapper)
 	- HikariCP connection pool (resource: spring/db.xml)
+	- MySQL access
+	- SQL Server (2000, version 8) access
 - FreeMarker: A simple implementation of freeMarker (refer to: http://blog.csdn.net/clementad/article/details/41862155)
 - FTP: A simple FTP client with progress shown
 - HTTP Client
