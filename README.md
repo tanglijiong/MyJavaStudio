@@ -37,5 +37,6 @@ And some customized utilities, encapsulated open-source code.
 
 ## Java Web:
 - Example to trigger the web browser to be in Full Screen state.
+- HTML Dialogs
 - SpringMVC receive Form Data or Query String using Map, MultiValueMap. (refer to: http://blog.csdn.net/clementad/article/details/43955741)
 - SpringMVC receive JSON data using Map. (refer to: http://blog.csdn.net/clementad/article/details/43955741)
