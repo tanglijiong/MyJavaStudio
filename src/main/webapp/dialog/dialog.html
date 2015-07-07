@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="content-type" content="text/html; charset=UTF-8">
+
+    <title>对话框测试</title>
+    
+    <script>
+    	function confirmDialog(){
+			if(confirm("还要继续吗？")){
+	    		alert("继续");
+			}else{
+    			alert("再见");
+			}
+    	}
+    	
+    	function promptDialog(){
+    		var name = prompt("你的名字是：");
+			alert("你好，" + name);
+    	}
+    </script>
+  </head>
+
+<body>
+
+	对话框测试：
+
+	<div style="margin-top:50px">
+		<input type="button" value="alert" onclick="alert('你好！')" />
+		<input type="button" value="confirm" onclick="confirmDialog()" />
+		<input type="button" value="prompt" onclick="promptDialog()" />
+	</div>
+</body>
+</html>
