@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5：前端缓存</title>
+	
+	<meta charset="UTF-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+	<script src="../resources/js/jquery-2.1.4.js" charset="UTF-8" type="text/javascript"></script>
+	<link href="../resources/css/common.css" rel="stylesheet" />
+	<link href="../resources/css/table.css" rel="stylesheet" />
+    
+    <script>
+    	$(function(){
+    		recordVisitCount();
+    		recordSessionCount();
+    	});
+    	
+    	function recordVisitCount(){
+    		if (localStorage.pagecount){
+				localStorage.pagecount=Number(localStorage.pagecount) +1;
+			} else {
+				localStorage.pagecount=1;
+			}
+			$("#visitCount").html(localStorage.pagecount);
+    	}
+    	
+		function recordSessionCount(){
+			if (sessionStorage.pagecount) {
+				sessionStorage.pagecount = Number(sessionStorage.pagecount) + 1;
+			} else {
+				sessionStorage.pagecount = 1;
+			}
+			$("#visitCountPerSession").html(sessionStorage.pagecount);
+		}					
+	</script>
+  </head>
+  
+  <body>
+  
+	<h2>在客户端存储数据</h2>
+    <p>HTML5 提供了两种在客户端存储数据的新方法：</p>
+	<ul>
+	<li>localStorage：没有时间限制的数据存储</li>
+	<li>sessionStorage：针对一个 session 的数据存储</li>
+	</ul>
+    
+    <br>
+    <h2>localStorage的使用：</h2>
+    <p>localStorage存储的数据没有时间限制。在同一个浏览器中，只要没被手动清理，第二天、第二周或下一年之后，数据依然可用。</p>
+    <p>例子：你在本机使用本浏览器第 <span id="visitCount" class="highlight"></span> 次浏览本页面。</p>
+ 
+ 	<h2>sessionStorage的使用：</h2>
+	<p>sessionStorage针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</p>
+  	<p>例子：你在本次打开此浏览器后，第 <span id="visitCountPerSession" class="highlight"></span> 次浏览了本页面。</p>
+  </body>
+</html>
