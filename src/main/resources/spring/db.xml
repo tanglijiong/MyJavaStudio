@@ -11,7 +11,7 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Hikari Datasource -->
-	<bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource">
+	<bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource" destroy-method="shutdown">
 		<!-- <property name="driverClassName" value="${db.driverClass}" /> --> <!-- 无需指定，除非系统无法自动识别 -->
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="username" value="${db.username}" />
