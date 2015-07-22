@@ -28,6 +28,9 @@ public class NoCacheFilter implements Filter {
         response.setDateHeader("Expires", -1);				//告诉浏览器数据可以缓存多长时间，-1或0表示不缓存
         response.setHeader("Cache_Control", "no-cache");	//支持HTTP 1.1，告诉浏览器要不要缓存数据，如“no-cache”
         response.setHeader("Pragma", "no-cache");			//支持HTTP 1.0，告诉浏览器要不要缓存数据，如“no-cache”
+        
+        response.setHeader("Access-Control-Allow-Origin", "*");     //允许跨域请求（CORS）
+        
         chain.doFilter(req, resp);
 	}
 
