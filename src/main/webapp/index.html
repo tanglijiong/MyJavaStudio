@@ -1,4 +1,50 @@
 <html>
+<head>
+<meta charset="UTF-8">
+	<script src="./resources/js/jquery-2.1.4.js" charset="UTF-8" type="text/javascript"></script>
+	<script src="testcases.js" charset="UTF-8" type="text/javascript"></script>
+	<script src="./resources/bigui/jquery.bigautocomplete.js" charset="UTF-8" type="text/javascript"></script>
+	<link rel="stylesheet" href="./resources/bigui/jquery.bigautocomplete.css" type="text/css" />
+	<link href="./resources/css/common.css" rel="stylesheet" />
+
+	<script>
+		function falseTest(){
+			var a = null;
+			var b = undefined;
+			var c = 0;
+			var d = false
+			var html = "";
+			
+			if(a){
+				html += "a is NOT false. </br>"
+			}else{
+				html += "a is false. </br>"
+			}
+
+			if(b){
+				html += "b is NOT false. </br>"
+			}else{
+				html += "b is false. </br>"
+			}
+			
+			if(c){
+				html += "c is NOT false. </br>"
+			}else{
+				html += "c is false. </br>"
+			}
+			
+			if(d){
+				html += "d is NOT false. </br>"
+			}else{
+				html += "d is false. </br>"
+			}
+			
+			$("#testResult").html(html);
+		}
+	</script>
+
+</head>
+
 <body>
 <h2>Hello MyJavaStudio!</h2>
 
@@ -9,6 +55,14 @@
 <h2><a href="./dialog/dialog.html">Dialog</a></h2>
 
 <h2><a href="./html5/storage.html">html5 : storage (local cache)</a></h2>
+
+
+<input type="button" value="空值测试"	onClick="falseTest();">
+
+<div>
+	<div>测试结果：</div>
+	<div><pre id="testResult" class="highlight"></pre></div>
+</div>
 
 </body>
 </html>
