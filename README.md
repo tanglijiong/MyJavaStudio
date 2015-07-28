@@ -42,3 +42,4 @@ And some customized utilities, encapsulated open-source code.
 - SpringMVC receive Form Data or Query String using Map, MultiValueMap. (refer to: http://blog.csdn.net/clementad/article/details/43955741)
 - SpringMVC receive JSON data using Map. (refer to: http://blog.csdn.net/clementad/article/details/43955741)
 - Usage of JQuery plug-in: bigautocomplete (test-tool.html) 
+
