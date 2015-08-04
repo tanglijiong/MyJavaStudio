@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Stock Market</title>
+<script src="../resources/js/jquery-2.1.4.js" charset="UTF-8" type="text/javascript"></script>
+<script src="stockids.js" charset="UTF-8" type="text/javascript"></script>
+<link href="../resources/css/common.css" rel="stylesheet" />
+
+</head>
+<body>
+	<div>
+		<div>实时行情：</div>
+		<div><pre id="content" class="highlight"></pre></div>
+	</div>
+
+	<script>
+		var url = "http://apis.baidu.com/apistore/stockservice/stock";
+		var aipKey = "da47545cf2bf34e59a445eda060ee62b";
+	
+		//系统初始化：
+		$(function() {
+			goRequest(0);
+		});
+			
+		//发送请求给目标url
+		function goRequest(i) {
+			ajaxRequest({"stockid" : stockIds[i]}, successCallback);
+		}
+				
+		//发送ajax请求
+		function ajaxRequest(params, successCallback, errorCallback){
+			$.ajax({
+				type : "GET",
+				url : url,
+				cache:false,
+				headers: {
+					"apikey": aipKey
+				},
+				dataType : "json", //表示返回值类型
+				data : params,
+				success : successCallback,
+				error : errorCallback
+			});
+		}
+
+		function successCallback(result){
+			if(result.errNum != 0){
+				addMsg("错误：errNum=" + result.errNum + "，errMsg：" + result.errMsg);
+			}
+		
+			var info = result.retData.stockinfo;
+			addMsg(info.name + "现价：" + info.currentPrice);
+		}
+
+
+		//往response中添加信息
+		function addMsg(msg){
+			$("#content").html($("#content").html() + msg + "\n");
+		}
+		
+		function clearMsg(){
+			$("#content").html("");
+		}
+
+
+	</script>
+
+</body>
+</html>
