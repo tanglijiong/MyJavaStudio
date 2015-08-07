@@ -3,13 +3,20 @@ package com.xjj.spring.task;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.xjj.service.MyScheduler111;
+
 @Component
 public class Singer {
+	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	//@Scheduled(fixedDelay=1000)  //第一种方式 ，fixedDelay延时多少毫秒，多少毫秒执行一次  
-    @Scheduled(cron="0 * * * * *")     //第二种方式  
+	@Scheduled(cron="0 * * * * *")     //第二种方式  
   
     /* 
         1 Seconds (0-59) 
@@ -36,4 +43,14 @@ public class Singer {
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");  
         System.out.println(sdf.format(date));  
     }  
+	
+	@Autowired
+	MyScheduler111 myScheduler;
+	
+	@Scheduled(fixedDelay=5000)
+	public void doSomething() {
+		logger.info("I am Singer.");
+	    //System.out.println("每5秒钟执行一次。");
+	    myScheduler.doSomething();
+	}
 }
