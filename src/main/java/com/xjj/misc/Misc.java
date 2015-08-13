@@ -11,11 +11,16 @@ import java.util.Random;
 import java.util.Set;
 
 import org.codehaus.jettison.json.JSONObject;
-import org.junit.Test;
 
 public class Misc {
-
-	@Test
+	public static void main(String[] args) throws MalformedURLException {
+		Misc m = new Misc();
+		m.test1();
+		m.test2();
+		m.test3();
+		m.maxInteger();
+	}
+	
 	public void test1() throws MalformedURLException {
 		final String[] URL_NAMES = { "http://javapuzzlers.com",
 				"http://apache2-snort.skybar.dreamhost.com",
@@ -32,7 +37,6 @@ public class Misc {
 		
 	}
 
-	@Test
 	public void test2() {
         Random rnd = new Random();
         boolean toBe = rnd.nextBoolean();
@@ -41,7 +45,6 @@ public class Misc {
         System.out.println(result);
     }
 	
-	@Test
 	public void test3(){
 		Map<String, Double> m = new HashMap<>();
 		m.put("aaaa", 123456.789);
@@ -52,29 +55,8 @@ public class Misc {
 		
 		List<String> l = Arrays.asList(s);
 		System.out.println(l);
-		
-		//List<String> l2 = new LinkedList<>();
-		//List<String> l3 = new ArrayList<>();
 	}
 	
-	public static void main(String[] args) {
-		(new Misc()).new MyClass().start();
-	}
-	
-	@Test
-	public void newThread() {
-		new MyClass().start();
-	}
-	
-	private class MyClass extends Thread{
-		@Override
-		public void run() {
-			System.out.println("hahaha");
-		}
-	}
-	
-	
-	@Test
 	public void maxInteger() {
 		System.out.println(Integer.MAX_VALUE);
 	}
