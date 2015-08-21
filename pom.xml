@@ -10,7 +10,7 @@
 
 	
 	<properties>
-		<spring.version>4.1.6.RELEASE</spring.version>
+		<spring.version>4.2.0.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>	<!-- 解决xml文件中文注释乱码的问题 -->
 	</properties>
   
@@ -64,18 +64,17 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-		
 		<!-- databind会自动引用core和annotations，所以不用声明另外两个 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.5.3</version>
-		</dependency>
+			<version>2.6.0</version>
+		</dependency>		
 		
 		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-core</artifactId>
-			<version>3.0.4.RELEASE</version>
+			<version>3.0.5.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -86,12 +85,13 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
-			<version>1.5.0.RELEASE</version>
+			<version>1.5.2.RELEASE</version>
 		</dependency>
+
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			<version>2.7.2</version>
+			<version>2.7.3</version>
 		</dependency>
 				
 	<!-- Begin of DB related -->			
