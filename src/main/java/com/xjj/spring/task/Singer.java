@@ -47,7 +47,7 @@ public class Singer {
 	@Autowired
 	MyScheduler111 myScheduler;
 	
-	@Scheduled(fixedDelay=5000)
+	//@Scheduled(fixedDelay=5000)
 	public void doSomething() {
 		logger.info("I am Singer.");
 	    //System.out.println("每5秒钟执行一次。");

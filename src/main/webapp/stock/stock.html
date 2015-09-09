@@ -33,9 +33,10 @@
 			$.ajax({
 				type : "GET",
 				url : url,
+				crossDomain: true,
 				cache:false,
 				headers: {
-					"apikey": aipKey
+					"apikey": aipKey					
 				},
 				dataType : "json", //表示返回值类型
 				data : params,
